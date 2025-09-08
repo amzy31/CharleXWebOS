@@ -1,92 +1,82 @@
-
-
-# charleX OS logo :
-
-
-                  %%  %%                      %%  %%      
-                 %%      %%                  %%      %%   
-                 %%        %%              %%        %%   
-                 %%          %%%%%%%%%%%%%%          %%   
-                 %%                                  %%   
-                 %%                                  %%   
-               %%        %%%%              %%%%        %% 
-             %%          %%%%%%          %%%%%%          %%
-             %%                                          %%
-             %%                  %%%%%%                  %%
-             %%            %%      %%      %%            %%
-               %%            %%%%%%%%%%%%%%            %%  
-                %%                                    %%  
-                   %%                              %%      
-                     %%%%%%%%              %%%%%%%%     
-                             %%%%%%%%%%%%%%               
-
+ 
 
 
 # charleX OS
 
-CharleX is a simple OS.
-The kernel is written in the C and the reference is  codeproject.com.
-I am still working on the source code to make a better kernel. Many features will be added.
-I want to create a free and open-source operating system like Linux, FreeBSD, etc. 
-You can support us with contribute and making better code to this project or giving stars.
+## Logo
 
+```
+                  %%  %%                      %%  %%
+                 %%      %%                  %%      %%
+                 %%        %%              %%        %%
+                 %%          %%%%%%%%%%%%%%          %%
+                 %%                                  %%
+                 %%                                  %%
+               %%        %%%%              %%%%        %%
+             %%          %%%%%%          %%%%%%          %%
+             %%                                          %%
+             %%                  %%%%%%                  %%
+             %%            %%      %%      %%            %%
+               %%            %%%%%%%%%%%%%%            %%
+                %%                                    %%
+                   %%                              %%
+                     %%%%%%%%              %%%%%%%%
+                             %%%%%%%%%%%%%%
+```
 
-![screenshots](screenshots/charleXGrub.png)
+## Description
 
-![screenshots](screenshots/charleXLoadingAndLogo.png)
+CharleX OS is a minimal, open-source operating system kernel written primarily in C with assembly components. It provides a basic terminal interface in VGA text mode, supporting keyboard input for a simple command-line experience. This project serves as an educational platform for understanding low-level OS development, inspired by early Unix-like systems such as Linux and FreeBSD.
 
-![screenshots](screenshots/charleXPrompt.png)
+The kernel includes features like:
+- VGA text mode initialization and output
+- Keyboard input handling with support for basic keys (enter, backspace, arrows, etc.)
+- A simple shell-like prompt for user interaction
+- Bootloader integration with GRUB
 
+## Screenshots
 
-# compile and run :
+![GRUB Bootloader](screenshots/charleXGrub.png)
 
-$ as --32 boot.s -o boot.o
+![Loading and Logo](screenshots/charleXLoadingAndLogo.png)
 
-$ gcc -m32 -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
+![Command Prompt](screenshots/charleXPrompt.png)
 
-$ gcc -m32 -c about.c -o about.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
+## Building and Running
 
-$ gcc -m32 -c utils.c -o utils.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
+### Prerequisites
+- GCC compiler
+- NASM assembler
+- GRUB tools
+- xorriso for ISO creation
 
-$ gcc -m32 -c char.c -o char.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
+### On Debian/Ubuntu
+Install dependencies:
+```bash
+make deps
+```
 
-$ gcc -m32 -c logo.c -o logo.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
+Build the ISO:
+```bash
+make mkiso
+```
 
-$ ld -m elf_i386 -T linker.ld kernel.o utils.o char.o logo.o boot.o -o charleX.bin -nostdlib
+Run the OS using a virtual machine or boot from the generated `charleX.iso`.
 
-$ ld -m elf_i386 -T linker.ld about.o  utils.o char.o logo.o boot.o -o about.bin -nostdlib
+### On Windows 10
+1. Install Windows Subsystem for Linux (WSL) with Ubuntu 24.04 from the Microsoft Store: https://apps.microsoft.com/detail/9nz3klhxdjp5?hl=en-us&gl=NL
+2. Follow the Linux build instructions above.
 
-$ grub-file --is-x86-multiboot charleX.bin
+For WSL configuration, refer to `WSL_WINDOWS.CONF`.
 
-$ mkdir -p iso/boot/grub
+## Contributing
 
-$ mkdir -p iso/about/
+CharleX OS is an open-source project, and contributions are welcome! Feel free to:
+- Report issues
+- Submit pull requests for bug fixes or new features
+- Improve documentation
+- Star the repository to show support
 
-$ cp charleX.bin iso/boot/charleX.bin
+## License
 
-$ cp about.bin iso/about/about.bin
-
-$ cp grub.cfg iso/boot/grub/grub.cfg
-
-$ grub-mkrescue -o charleX.iso iso
-
-$ rm *.bin *.o 
-
-$sudo qemu-system-i386 ./charleX.iso
-
-
-
-
-# Automatic compile and run
-
-$ chmod +x run.sh
-
-$ ./run.sh
-
-
-# GCC Cross Compiler :
-
-$ chmod +x ./gccCrossCompiler
-
-$./gccCrossComplier
-
+This project is licensed under the terms specified in the `LICENSE` file.
