@@ -22,10 +22,10 @@ void kernel_up(){
   newline_on_terminal();
 
   // input() for   infinity loop (terminal loop infinity)
-  print_on_terminal("# ");
+  print_on_terminal("Please just press ENTER ");
 
-  while (1){
-    input();
-  }
+while(1){
+  if(input()) break;
+}
 
 }

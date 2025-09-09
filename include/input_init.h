@@ -18,7 +18,7 @@ extern uint8 inb(uint16 port);
 extern void outb(uint16 port, uint8 data);
 extern void wait_for_io(uint32 timer_count);
 extern void sleep(uint32 timer_count);
-extern void input();
+extern int input();
 extern void kernel_up();
 
 uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color){
@@ -72,11 +72,14 @@ void scroll_screen(){
   }
   next_line_index = 24;
   vga_index = 24 * 80;
+  sleep(0x10000); // small delay to prevent flickering
 }
 
 void newline_on_terminal(){
   if(next_line_index >= 25){
-    scroll_screen();
+    next_line_index = 1;
+    clear_vga_buffer(&vga_buffer, g_fore_color, g_back_color);
+    vga_index = 80 * 1;
   } else {
     vga_index = 80 * next_line_index;
     next_line_index++;
