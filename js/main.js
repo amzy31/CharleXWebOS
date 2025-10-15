@@ -1,43 +1,10 @@
- // DEV CTRL!!
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-if (isMobile) {
-  const orientationMsg = document.createElement('div');
-  orientationMsg.style.cssText = `
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: rgba(0,0,0,0.8); color: white; display: flex; 
-    flex-direction: column; justify-content: center; align-items: center; 
-    font-size: 24px; z-index: 9999; text-align: center; padding: 20px;
-    display: none;
-  `;
-  orientationMsg.innerHTML = `
-    <p>Please rotate your device to landscape mode</p>
-    <button id="closeRotateBtn" style="margin-top: 20px; padding: 10px 20px; 
-      font-size: 18px; cursor: pointer;">Continue Anyway</button>
-  `;
-  document.body.appendChild(orientationMsg);
-
-  const closeBtn = document.getElementById('closeRotateBtn');
-  closeBtn.addEventListener('click', () => {
-    orientationMsg.style.display = 'none';
-  });
-
-  const checkOrientation = () => {
-    if (window.matchMedia("(orientation: portrait)").matches) {
-      orientationMsg.style.display = 'flex';
-    } else {
-      orientationMsg.style.display = 'none';
-    }
-  };
-  window.addEventListener('load', checkOrientation);
-  window.matchMedia("(orientation: portrait)").addEventListener('change', checkOrientation);
-}
-
-// DEV CTRL!!
-
 document.addEventListener('DOMContentLoaded', () => {    // Ensure dock exists and is centered before creating icons
     if (window.Charlex && window.Charlex.DOM && typeof window.Charlex.DOM.createModernDock === 'function') {
-        try { window.Charlex.DOM.createModernDock(); } catch (err) {/* ignore */}
+      try { 
+  window.Charlex.DOM.createModernDock('dock'); 
+} catch (err) { 
+  alert('The Charlex-Dock is not ready to use'); 
+}   
     }
     // Create Welcome Window (Window1)
     Charlex.DOM.createWindow('window1', 'Welcome', `
@@ -117,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {    // Ensure dock exists a
 
     // Create Dock Icons (use Charlex.DOM.showWindow wrapper where possible)
     Charlex.DOM.createDockIcon('Welcome Window', () => Charlex.DOM.showWindow('window1'), '<img src="img/logo.jpg" alt="LOGO" class="rounded-circle" style="width: 32px; height: 32px;" />', {tooltip: 'Welcome'});
-    Charlex.DOM.createDockIcon('Note Window', () => Charlex.DOM.showWindow('noteWindow'), '<i class="fas fa-sticky-note" style="font-size: 32px;"></i>', {tooltip: 'Notes'});
+    Charlex.DOM.createDockIcon('Note Window', () => Charlex.DOM.showWindow('noteWindow'), '<img src="icons/apps/scalable/accessories-text-editor.svg" style="width: 32px; height: 32px;" />', {tooltip: 'Notes'});
     Charlex.DOM.createDockIcon('Libertarian Project', () => {
         console.log('Libertarian dock icon clicked');
         if (!document.getElementById('libertarianWindow')) {
@@ -127,9 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {    // Ensure dock exists a
         }
         Charlex.DOM.showWindow('libertarianWindow');
         console.log('Libertarian window shown');
-    }, '<i class="fas fa-balance-scale" style="font-size: 32px;"></i>', {tooltip: 'Libertarian Project'});
-    Charlex.DOM.createDockIcon('SysInfo', () => Charlex.DOM.showWindow('sysInfo'), '<i class="fas fa-chart-line" style="font-size: 32px;"></i>', {tooltip: 'SYSTEM INFO'});
-    Charlex.DOM.createDockIcon('Linux Shell', () => Charlex.DOM.showWindow('shellWindow'), '<i class="fas fa-terminal" style="font-size: 32px;"></i>', {tooltip: 'Shell'});
-    Charlex.DOM.createDockIcon('CharleX Browser', () => Charlex.DOM.showWindow('browserWindow'), '<i class="fas fa-globe" style="font-size: 32px;"></i>', {tooltip: 'CharleX Browser'});
-    Charlex.DOM.createDockIcon('WebDisk', () => Charlex.DOM.showWindow('webdiskWindow'), '<i class="fas fa-hdd" style="font-size: 32px;"></i>', {tooltip: 'WebDisk'});
+    }, '<img src="icons/apps/scalable/accessibility.svg" style="width: 32px; height: 32px;" />', {tooltip: 'Libertarian Project'});
+    Charlex.DOM.createDockIcon('SysInfo', () => Charlex.DOM.showWindow('sysInfo'), '<img src="icons/apps/scalable/accessories-calculator.svg" style="width: 32px; height: 32px;" />', {tooltip: 'SYSTEM INFO'});
+    Charlex.DOM.createDockIcon('Linux Shell', () => Charlex.DOM.showWindow('shellWindow'), '<img src="icons/apps/scalable/Terminal.svg" style="width: 32px; height: 32px;" />', {tooltip: 'Shell'});
+    Charlex.DOM.createDockIcon('CharleX Browser', () => Charlex.DOM.showWindow('browserWindow'), '<img src="icons/apps/scalable/Z-web-browser.svg" style="width: 32px; height: 32px;" />', {tooltip: 'CharleX Browser'});
+    Charlex.DOM.createDockIcon('WebDisk', () => Charlex.DOM.showWindow('webdiskWindow'), '<img src="icons/apps/scalable/Thunar.svg" style="width: 32px; height: 32px;" />', {tooltip: 'WebDisk'});
 });

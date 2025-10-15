@@ -1,6 +1,6 @@
-# Charlex WebOS
+# Charlex WebOS; Zero-Trust WEBPAGE as an Operating System!
 
-A fun web-based operating system simulation built with **Vanilla JavaScript** (no frameworks, no Java!). I'm a Googler who loves JavaScript for its simplicity and power in the browser.
+A fun web-based operating system simulation built with **Vanilla JavaScript** (no frameworks, no Java(fuch the JAVA)!). I'm a ([Googler](https://g.dev/amzy31) who loves JavaScript for its simplicity and power in the browser.
 
 ![screenshot](./screenshots/1.png)
 

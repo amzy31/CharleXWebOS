@@ -150,7 +150,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 12px;
-    height: auto;
+    height: 50px;
     min-height: 64px;
     padding: 10px 16px;
     width: auto;
@@ -596,6 +596,8 @@ body {
         padding-top: 50px;
     }
     .dock-container {
+        position: fixed;
+
         bottom: 5px;
         z-index: 10001; /* ensure dock is above maximized windows */
     }
@@ -606,7 +608,7 @@ body {
         max-width: clamp(85vw, 95vw, 90vw);
     }
     .window.maximized {
-        max-height: calc(100vh - 80px);
+        max-height: calc(90vh - 80px);
     }
 }
 

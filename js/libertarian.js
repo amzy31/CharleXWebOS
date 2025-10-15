@@ -98,6 +98,8 @@
             console.log('Content div found:', contentDiv);
             contentDiv.innerHTML = '';
             contentDiv.appendChild(appContent);
+            // Initialize window manager for drag functionality on the new window
+            window.Charlex.WindowManager.initWindowManager();
             return appWindow;
         }
     };

@@ -12,7 +12,7 @@
         }
         // remove legacy classes that may interfere
         dock.classList.remove('fixed-bottom', 'some-legacy-dock');
-        dock.classList.add('dock-container', 'bg-dark', 'container-fluid', 'd-flex', 'justify-content-center', 'align-items-center');
+        dock.classList.add('dock-container', 'bg-dark', 'container', 'd-flex', 'justify-content-center', 'align-items-center');
         // Rely on CSS for visual appearance. Only adjust small-screen bottom offset.
         try {
             if (window.innerWidth <= 480) dock.style.bottom = '10px';
@@ -31,7 +31,7 @@
     window.Charlex.DOM.createDockIcon = function(title, onclick, innerHTML, opts = {}) {
         const dock = window.Charlex.DOM.createModernDock();
         const icon = document.createElement('button');
-        icon.className = 'dock-icon btn rounded-circle';
+        icon.className = 'dock-icon btn  btn-dark rounded-circle';
         icon.type = 'button';
         icon.title = opts.tooltip || title || '';
         icon.setAttribute('aria-label', title || 'dock-icon');
