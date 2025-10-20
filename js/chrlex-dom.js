@@ -29,7 +29,7 @@
                     <button type="button" class="window-control-button minimize" onmousedown="event.stopPropagation()" ontouchstart="event.stopPropagation()" title="Minimize" tabindex="0"></button>
                     <button type="button" class="window-control-button maximize" onmousedown="event.stopPropagation()" ontouchstart="event.stopPropagation()" title="Maximize" tabindex="0"></button>
                 </div>
-                <div class="window-title bg-dark container">${title}</div>
+                <div class="window-title bg-primary text-light rounded container">${title}</div>
                 <div style="width: 48px;"></div>
             </div>
             <div class="window-content container p-5">

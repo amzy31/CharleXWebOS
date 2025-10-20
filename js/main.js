@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {    // Ensure dock exists a
     Charlex.DOM.createWindow('browserWindow', 'CharleX Browser', `
         <div id="browserContent" style="display: flex; flex-direction: column; height: 400px;">
             <div style="margin-bottom: 10px; display: flex; gap: 5px;">
-                <input type="text" id="urlInput" placeholder="Enter URL" style="flex: 1; padding: 5px;" />
-                <button id="goBtn" style="padding: 5px 10px;">Go</button>
+                <input class="bg-dark text-light" type="text" id="urlInput" placeholder="Enter URL" style="flex: 1; padding: 5px;" />
+                <button class="btn btn-primary" id="goBtn" style="padding: 5px 10px;">Go</button>
             </div>
             <iframe id="browserFrame" src="" style="flex: 1; border: 1px solid #ccc;"></iframe>
         </div>
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {    // Ensure dock exists a
 
     // Create Dock Icons (use Charlex.DOM.showWindow wrapper where possible)
     Charlex.DOM.createDockIcon('Welcome Window', () => Charlex.DOM.showWindow('window1'), '<img src="img/logo.jpg" alt="LOGO" class="rounded-circle" style="width: 32px; height: 32px;" />', {tooltip: 'Welcome'});
-    Charlex.DOM.createDockIcon('Note Window', () => Charlex.DOM.showWindow('noteWindow'), '<img src="icons/apps/scalable/accessories-text-editor.svg" style="width: 32px; height: 32px;" />', {tooltip: 'Notes'});
+    Charlex.DOM.createDockIcon('Note Window', () => Charlex.DOM.showWindow('noteWindow'), '<img src="icons//accessories-text-editor.svg" style="width: 32px; height: 32px;" />', {tooltip: 'Notes'});
     Charlex.DOM.createDockIcon('Libertarian Project', () => {
         console.log('Libertarian dock icon clicked');
         if (!document.getElementById('libertarianWindow')) {
@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {    // Ensure dock exists a
         }
         Charlex.DOM.showWindow('libertarianWindow');
         console.log('Libertarian window shown');
-    }, '<img src="icons/apps/scalable/accessibility.svg" style="width: 32px; height: 32px;" />', {tooltip: 'Libertarian Project'});
-    Charlex.DOM.createDockIcon('SysInfo', () => Charlex.DOM.showWindow('sysInfo'), '<img src="icons/apps/scalable/accessories-calculator.svg" style="width: 32px; height: 32px;" />', {tooltip: 'SYSTEM INFO'});
-    Charlex.DOM.createDockIcon('Linux Shell', () => Charlex.DOM.showWindow('shellWindow'), '<img src="icons/apps/scalable/Terminal.svg" style="width: 32px; height: 32px;" />', {tooltip: 'Shell'});
-    Charlex.DOM.createDockIcon('CharleX Browser', () => Charlex.DOM.showWindow('browserWindow'), '<img src="icons/apps/scalable/Z-web-browser.svg" style="width: 32px; height: 32px;" />', {tooltip: 'CharleX Browser'});
-    Charlex.DOM.createDockIcon('WebDisk', () => Charlex.DOM.showWindow('webdiskWindow'), '<img src="icons/apps/scalable/Thunar.svg" style="width: 32px; height: 32px;" />', {tooltip: 'WebDisk'});
+    }, '<img src="icons//accessibility.svg" style="width: 32px; height: 32px;" />', {tooltip: 'Libertarian Project'});
+    Charlex.DOM.createDockIcon('SysInfo', () => Charlex.DOM.showWindow('sysInfo'), '<img src="icons/app.svg" style="width: 32px; height: 32px;" />', {tooltip: 'SYSTEM INFO'});
+    Charlex.DOM.createDockIcon('Linux Shell', () => Charlex.DOM.showWindow('shellWindow'), '<img src="icons/Terminal.svg" style="width: 32px; height: 32px;" />', {tooltip: 'Shell'});
+    Charlex.DOM.createDockIcon('CharleX Browser', () => Charlex.DOM.showWindow('browserWindow'), '<img src="icons/Z-web-browser.svg" style="width: 32px; height: 32px;" />', {tooltip: 'CharleX Browser'});
+    Charlex.DOM.createDockIcon('WebDisk', () => Charlex.DOM.showWindow('webdiskWindow'), '<img src="icons/Thunar.svg" style="width: 32px; height: 32px;" />', {tooltip: 'WebDisk'});
 });

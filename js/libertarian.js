@@ -71,7 +71,7 @@
         copyBtn.className = 'btn btn-light btn-sm';
         copyBtn.style.cursor = 'pointer';
         copyBtn.onclick = () => {
-            const address = '1GeJAAGxiuRyzw7byVhgBGripYEeE9UWzM';
+            const address = 'bc1qyzxhz6pzptheca8al3c7nj2ksptc3hasqgz34j';
             navigator.clipboard.writeText(address).then(() => {
                 alert('Bitcoin address copied to clipboard!');
             }).catch(err => {
