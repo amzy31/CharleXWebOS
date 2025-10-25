@@ -1,4 +1,4 @@
- :root {
+   :root {
     --macos-blue: #007aff;
     --macos-gray: #8e8e93;
     --macos-light-gray: #c7c7cc;
@@ -613,28 +613,25 @@ body {
 }
 
 /* WebDisk responsiveness */
-#webdiskWindow {
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-}
-#webdiskContent {
+#webdiskWindow {}
+
+/* Ensure horizontal scroll on narrow maximized views */
+.window.maximized #webdiskContent {
     overflow-x: auto;
+    overflow-y: auto;
 }
-#webdiskContent table {
-    min-width: 100%;
-    white-space: nowrap;
+.window.maximized #webdiskContent::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
 }
-@media (max-width: 768px) {
-    #webdiskContent table {
-        font-size: 12px;
-    }
-    #webdiskContent table th,
-    #webdiskContent table td {
-        padding: 2px 4px;
-    }
-    #webdiskContent .btn {
-        font-size: 12px;
-        padding: 4px 8px;
-    }
+.window.maximized #webdiskContent::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+.window.maximized #webdiskContent::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 4px;
+}
+.window.maximized #webdiskContent::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.5);
 }
