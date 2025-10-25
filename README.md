@@ -14,10 +14,9 @@ A fun web-based operating system simulation built with **Vanilla JavaScript** (n
 ## What You Can Do
 
 - **Drag windows** around the desktop.
-- **Click dock icons** to open apps like Notes, CPU Monitor, Shell, etc.
+- **Click dock icons** to open apps like Notes, System Information, Shell, etc.
 - **Take encrypted notes** and save/load them.
 - **Simulate a Linux shell** with basic commands.
-- **Toggle between macOS and Windows styles**.
 - **Power controls** (reboot, halt - simulated).
 - **File explorer** for your encrypted files.
 
