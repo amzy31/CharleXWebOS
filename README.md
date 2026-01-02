@@ -1,43 +1,121 @@
-# Charlex WebOS; Zero-Trust WEBPAGE as an Operating System!
+# Charlex WebOS: Zero-Trust Web-Based Operating System Simulation
 
-A fun web-based operating system simulation built with **Vanilla JavaScript** (no frameworks, no Java(fuch the JAVA)!). I'm a ([Googler](https://g.dev/amzy31) who loves JavaScript for its simplicity and power in the browser.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-2.3.3-green)](https://flask.palletsprojects.com/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-orange)](https://www.sqlalchemy.org/)
 
-![screenshot](./screenshots/1.png)
+A lightweight web-based OS simulation refactored with **Flask** for a robust Python backend, enabling persistent data management while keeping the frontend simple. Built by a [Googler](https://g.dev/amzy31) who appreciates Flask's elegance for backend logic.
 
+![Screenshot](./screenshots/1.png)
 
-## Quick Start
+## 🚀 Quick Start
 
-1. Download or clone this repo.
-2. Open `index.html` in your favorite browser (BRAVE/Chrome works best).
-3. Enjoy your mini OS!
+1. Clone or download the repo:
+   ```
+   git clone https://github.com/yourusername/charlexwebos.git
+   cd charlexwebos
+   ```
 
-## What You Can Do
+2. Set up virtual environment and install dependencies:
+   ```
+   virtualenv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
 
-- **Drag windows** around the desktop.
-- **Click dock icons** to open apps like Notes, CPU Monitor, Shell, etc.
-- **Take encrypted notes** and save/load them.
-- **Simulate a Linux shell** with basic commands.
-- **Toggle between macOS and Windows styles**.
-- **Power controls** (reboot, halt - simulated).
-- **File explorer** for your encrypted files.
+3. Run the Flask application:
+   ```
+   export FLASK_APP=app.py
+   flask run
+   ```
+   Or:
+   ```
+   python app.py
+   ```
 
-## Tech Stuff
+4. Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser.
 
-- **Backendless System**: Runs entirely in the browser - no server, no backend, no dependencies!
-- Pure JavaScript (Vanilla JS all the way!)
-- CSS for styling
-- Uses modern web APIs forencryption and storage
+5. Experience the OS with backend-powered persistence!
 
-## Why Vanilla JS?
-#### First I'm Googler but dont do java when I can do JavaScript! - No frameworks, no build!
-- const JavaScript = require('javascript');
-- const CSS = require('css');
-- const HTML = require('html');
+## ✨ Features
 
+- Drag windows around the desktop.
+- Launch apps via dock icons (Notes, CPU Monitor, Shell, etc.).
+- Encrypted notes with save/load functionality.
+- Simulated Linux shell with basic commands.
+- Theme switching (macOS/Windows styles).
+- Simulated power controls (reboot, halt).
+- File explorer for encrypted files.
+- Backend persistence for window states (positions, sizes, z-index) via Flask API.
 
-## License
+The frontend is served unchanged, but Flask handles all logic for scalability and data storage.
 
-MIT - Feel free to fork and play around!
+## 🛠 Tech Stack
 
-© 2020-2025 AMZY31
+- **Backend**: [Flask](https://flask.palletsprojects.com/) – Python's micro-framework for building web APIs quickly and efficiently. Ideal for adding persistence without complexity.
+- **Database**: [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/) with SQLite for simple, file-based storage.
+- **Real-Time**: Flask-SocketIO for WebSocket support (ready for extensions like live updates).
+- **Frontend**: HTML, CSS, JavaScript – served statically by Flask.
+- **No Bloat**: Minimal dependencies; Flask keeps it lightweight and Pythonic.
+
+Flask is the star here: It transforms a static site into a full-stack app with clean, readable code. Perfect for developers seeking power without overhead.
+
+## 📡 API Endpoints
+
+Flask provides a RESTful API for window management. Integrate with frontend JS using fetch or XMLHttpRequest:
+
+- `GET /api/windows` – Fetch all windows (JSON response with states).
+- `POST /api/windows` – Create window (body: JSON with window_id, left, top, width, height, etc.).
+- `PUT /api/windows/<id>` – Update window (e.g., after drag/resize).
+- `DELETE /api/windows/<id>` – Remove window.
+
+Example curl test (app running):
+```bash
+curl http://127.0.0.1:5000/api/windows
+```
+
+Example JS integration:
+```javascript
+fetch('/api/windows', { method: 'POST', body: JSON.stringify({window_id: 'terminal', left: 100}) })
+  .then(res => res.json())
+  .then(data => console.log('Created:', data));
+```
+
+Database file: `charlexwebos.db` (auto-created).
+
+## 📁 Project Structure
+
+```
+charlexwebos/
+├── app.py                 # Main Flask app and routes
+├── models.py              # SQLAlchemy models (Window)
+├── requirements.txt       # Dependencies (Flask, SQLAlchemy, SocketIO)
+├── templates/             # Jinja2 templates
+│   └── index.html
+├── static/                # Served assets
+│   ├── css/
+│   ├── js/
+│   ├── icons/
+│   └── img/
+├── venv/                  # Virtual env (gitignored)
+└── README.md
+```
+
+## 🧪 Testing
+
+- **Frontend**: Load http://127.0.0.1:5000 – verify UI, drag windows, launch apps.
+- **Backend API**: Use curl or Postman to test endpoints (see above).
+- **Persistence**: Create/update windows via API, refresh page – states should persist.
+
+Run `flask run --debug` for development mode.
+
+## 🤝 Contributing
+
+Fork, branch, commit, PR! Focus on Flask extensions, API enhancements, or backend features.
+
+## 📄 License
+
+MIT – See [LICENSE](LICENSE).
+
+© 2020-2025 AMZY31. Powered by Flask for the modern web.
 
