@@ -1,4 +1,6 @@
 // this function load logo
+#include "include/input_init.h"
+
 void logo(){
 
     print_on_terminal("        %%  %%                      %%  %%      ");
@@ -54,12 +56,12 @@ void logo(){
     newline_on_terminal();
 
 
-    print_on_terminal("|------------------|");
+    print_on_terminal("|-------------------------|");
     newline_on_terminal();
-    print_on_terminal("!Welcome to charleX!");
+    print_on_terminal("|Welcome to the CharleX OS|");
     newline_on_terminal();
-    print_on_terminal("!    version 0.1   !");
+    print_on_terminal("|       version 0.1       |");
     newline_on_terminal();
-    print_on_terminal("|------------------|");
+    print_on_terminal("|-------------------------|");
     newline_on_terminal();
 }

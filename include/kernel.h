@@ -8,8 +8,6 @@
 #define VGA_ADDRESS 0xB8000
 #define BUFSIZE 2000
 
-uint16* vga_buffer;
-
 enum vga_color {
     BLACK,
     BLUE,

@@ -1,26 +1,11 @@
 /*
-  Emulation for key board terminal-like bindings.
+  Emulation Unix-like terminal.
  */
 #include "../include/input_init.h"
-// get and read the keys  and kernel reaction
-int input(){
-  static char command_buffer[256];
-  static int buffer_index = 0;
-  static char current_dir[256] = "/";
-  static char files[100][256];
-  static int file_count = 0;
-  char ch = 0;
-  char keycode = 0;
-  int ret = 0;
 
-  do{
-    keycode = get_input_prompt();
-    // if user press enter (KEY)
-    if(keycode == KEY_ENTER){
-      command_buffer[buffer_index] = '\0';
-      int handled = 0;
-      if (buffer_index == 4 && command_buffer[0] == 'h' && command_buffer[1] == 'e' && command_buffer[2] == 'l' && command_buffer[3] == 'p') {
-        newline_on_terminal();
+// help function 
+void help(){
+	newline_on_terminal();
         print_on_terminal("CharleX OS Help:");
         newline_on_terminal();
         print_on_terminal("Available commands:");
@@ -43,7 +28,30 @@ int input(){
         newline_on_terminal();
         print_on_terminal("Press ESC to exit the operating system");
         newline_on_terminal();
-        handled = 1;
+ 
+}
+
+// get and read the keys  and kernel reaction
+int input(){
+  static char command_buffer[256];
+  static int buffer_index = 0;
+  static char current_dir[256] = "/";
+  static char files[100][256];
+  static int file_count = 0;
+
+  char ch = 0;
+  char keycode = 0;
+  int ret = 0;
+
+  do{
+    keycode = get_input_prompt();
+    // if user press enter (KEY)
+    if(keycode == KEY_ENTER){
+      command_buffer[buffer_index] = '\0';
+      int handled = 0;
+      if (buffer_index == 4 && command_buffer[0] == 'h' && command_buffer[1] == 'e' && command_buffer[2] == 'l' && command_buffer[3] == 'p') {
+	      help();
+              handled = 1;
       } else if (buffer_index == 2 && command_buffer[0] == 'l' && command_buffer[1] == 's') {
         newline_on_terminal();
         for(int i=0; i<file_count; i++){
@@ -131,8 +139,34 @@ int input(){
         handled = 1;
       } else if (buffer_index == 4 && command_buffer[0] == 'd' && command_buffer[1] == 'i' && command_buffer[2] == 's' && command_buffer[3] == 'k') {
         newline_on_terminal();
-        print_on_terminal("Disk manager: 1 disk found, size 10MB");
-        newline_on_terminal();
+        uint32 master_size = 0, slave_size = 0;
+        uint32 disk_count = detect_disks(&master_size, &slave_size);
+        if (disk_count == 0) {
+          print_on_terminal("Disk manager: No disks found");
+        } else {
+          print_on_terminal("Disk manager: ");
+          char count_str[4];
+          itoa(disk_count, count_str);
+          print_on_terminal(count_str);
+          print_on_terminal(" disk(s) found");
+          newline_on_terminal();
+          if (master_size > 0) {
+            print_on_terminal("Master drive size: ");
+            char size_str[16];
+            itoa(master_size, size_str);
+            print_on_terminal(size_str);
+            print_on_terminal(" MB");
+            newline_on_terminal();
+          }
+          if (slave_size > 0) {
+            print_on_terminal("Slave drive size: ");
+            char size_str[16];
+            itoa(slave_size, size_str);
+            print_on_terminal(size_str);
+            print_on_terminal(" MB");
+            newline_on_terminal();
+          }
+        }
         print_on_terminal("root@charlex:");
         print_on_terminal(current_dir);
         print_on_terminal("# ");
@@ -171,7 +205,7 @@ int input(){
 
     //if user press TAB (KEY)
     else if(keycode == KEY_TAB){
-
+        
     }
     //if user press ESC (KEY)
     else if(keycode == KEY_ESC){
@@ -190,7 +224,7 @@ int input(){
       }
     }
 
-    sleep(0xdffffff); // small delay for emulator input speed
+    sleep(0xcffffff); // small delay for emulator input speed
 
   }while(ch > 0);
   return ret;

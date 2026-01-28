@@ -63,11 +63,6 @@ make mkiso
 
 Run the OS using a virtual machine or boot from the generated `charleX.iso`.
 
-### On Windows 10
-1. Install Windows Subsystem for Linux (WSL) with Ubuntu 24.04 from the Microsoft Store: https://apps.microsoft.com/detail/9nz3klhxdjp5?hl=en-us&gl=NL
-2. Follow the Linux build instructions above.
-
-For WSL configuration, refer to `WSL_WINDOWS.CONF`.
 
 ## Contributing
 
